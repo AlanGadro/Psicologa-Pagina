@@ -1,0 +1,36 @@
+@use './variables' as *;
+@use './mixins' as *;
+
+.site-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-shell {
+  flex: 1;
+}
+
+.container {
+  @include container;
+}
+
+.section {
+  @include section-spacing;
+
+  &--hero {
+    padding-top: $space-8;
+  }
+
+  &--accent {
+    background: linear-gradient(180deg, rgba(141, 165, 154, 0.08), rgba(141, 165, 154, 0.02));
+  }
+
+  &--soft {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0.28));
+  }
+}
+
+.contact-page {
+  max-width: 820px;
+}

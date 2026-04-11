@@ -1,0 +1,58 @@
+@use './variables' as *;
+
+@mixin container {
+  width: min(100% - 2rem, $container-width);
+  margin-inline: auto;
+}
+
+@mixin section-spacing {
+  padding-block: $space-7;
+
+  @include breakpoint-md {
+    padding-block: $space-8;
+  }
+}
+
+@mixin card-surface($background: $color-surface) {
+  background: $background;
+  border: 1px solid $color-border;
+  border-radius: $radius-card;
+  box-shadow: $shadow-card;
+}
+
+@mixin animated-card {
+  transition: transform $transition-base, box-shadow $transition-base, border-color $transition-base;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 26px 52px rgba(33, 49, 60, 0.16);
+    border-color: rgba(111, 71, 77, 0.22);
+  }
+}
+
+@mixin section-title {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.15;
+}
+
+@mixin eyebrow {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $color-primary;
+}
+
+@mixin breakpoint-md {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin breakpoint-lg {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}

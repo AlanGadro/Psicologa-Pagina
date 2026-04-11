@@ -1,0 +1,54 @@
+@use './variables' as *;
+
+:root {
+  font-family: $font-family-base;
+  color: $color-text;
+  background-color: $color-background;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  color: $color-text;
+  background:
+    radial-gradient(circle at top left, rgba(216, 164, 143, 0.18), transparent 28%),
+    radial-gradient(circle at top right, rgba(141, 165, 154, 0.22), transparent 30%),
+    linear-gradient(180deg, #fbf5f0 0%, $color-background 52%, $color-background-alt 100%);
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

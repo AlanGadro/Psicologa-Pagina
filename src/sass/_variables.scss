@@ -1,0 +1,39 @@
+$font-family-base: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+$color-background: #f7efe8;
+$color-background-alt: #f2e5dd;
+$color-surface: rgba(255, 255, 255, 0.78);
+$color-surface-strong: #ffffff;
+$color-surface-soft: #efe2d8;
+$color-primary: #8e5f64;
+$color-primary-dark: #6f474d;
+$color-secondary: #8da59a;
+$color-secondary-dark: #5f7d72;
+$color-accent: #d8a48f;
+$color-text: #21313c;
+$color-text-soft: #52606d;
+$color-border: rgba(111, 71, 77, 0.14);
+$color-shadow: rgba(33, 49, 60, 0.12);
+$color-shadow-soft: rgba(111, 71, 77, 0.08);
+$color-overlay: rgba(30, 26, 28, 0.44);
+
+$radius-card: 24px;
+$radius-pill: 999px;
+$radius-panel: 32px;
+
+$container-width: 1120px;
+
+$space-1: 0.5rem;
+$space-2: 0.75rem;
+$space-3: 1rem;
+$space-4: 1.5rem;
+$space-5: 2rem;
+$space-6: 3rem;
+$space-7: 4rem;
+$space-8: 5rem;
+
+$shadow-card: 0 24px 60px $color-shadow;
+$shadow-card-soft: 0 18px 42px $color-shadow-soft;
+$shadow-button: 0 12px 24px rgba(142, 95, 100, 0.2);
+
+$transition-base: 220ms ease;

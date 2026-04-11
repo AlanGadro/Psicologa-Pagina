@@ -1,0 +1,282 @@
+@use './variables' as *;
+@use './mixins' as *;
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(16px);
+  background: rgba(247, 239, 232, 0.72);
+  border-bottom: 1px solid rgba(111, 71, 77, 0.12);
+  box-shadow: 0 10px 30px rgba(33, 49, 60, 0.06);
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+    padding-block: $space-3;
+
+    @include breakpoint-lg {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}
+
+.site-brand {
+  display: inline-grid;
+  gap: 0.35rem;
+  transition: transform $transition-base;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  &__eyebrow {
+    @include eyebrow;
+    margin: 0;
+  }
+
+  strong {
+    font-size: 1.1rem;
+    color: $color-primary-dark;
+  }
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding-inline: 1rem;
+    border-radius: $radius-pill;
+    color: $color-text-soft;
+    transition: background-color $transition-base, color $transition-base, transform $transition-base;
+
+    &:hover,
+    &--active {
+      background: rgba(142, 95, 100, 0.12);
+      color: $color-primary-dark;
+      transform: translateY(-1px);
+    }
+  }
+}
+
+.section-heading {
+  max-width: 720px;
+  margin-bottom: $space-6;
+
+  &--center {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  &__eyebrow {
+    @include eyebrow;
+    margin-bottom: $space-3;
+  }
+
+  h2 {
+    @include section-title;
+    margin: 0 0 $space-3;
+  }
+
+  p {
+    margin: 0;
+    color: $color-text-soft;
+    line-height: 1.7;
+  }
+}
+
+.button-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.25rem;
+  padding: 0.85rem 1.35rem;
+  border-radius: $radius-pill;
+  border: 1px solid transparent;
+  font-weight: 600;
+  transition: transform $transition-base, background-color $transition-base, border-color $transition-base, box-shadow $transition-base;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &--primary {
+    background: $color-primary;
+    color: $color-surface-strong;
+    box-shadow: $shadow-button;
+  }
+
+  &--secondary {
+    background: rgba(255, 255, 255, 0.5);
+    color: $color-primary-dark;
+    border-color: rgba(111, 71, 77, 0.24);
+  }
+}
+
+.card-grid,
+.steps-grid,
+.study-list {
+  display: grid;
+  gap: $space-4;
+
+  @include breakpoint-md {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.card-grid--two-columns {
+  @include breakpoint-md {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.info-card,
+.study-item,
+.step-card,
+.quote-card {
+  @include card-surface;
+  @include animated-card;
+  padding: $space-5;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, $color-primary, $color-accent, $color-secondary);
+    opacity: 0.8;
+  }
+
+  h3,
+  strong {
+    display: block;
+    margin: 0 0 $space-3;
+    font-size: 1.15rem;
+    line-height: 1.35;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.7;
+    color: $color-text-soft;
+  }
+}
+
+.contact-card {
+  @include card-surface;
+  @include animated-card;
+  padding: $space-6;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.68));
+
+  > p {
+    margin: 0 0 $space-5;
+    line-height: 1.8;
+    color: $color-text-soft;
+  }
+
+  &__details {
+    display: grid;
+    gap: $space-3;
+
+    p {
+      margin: 0;
+      line-height: 1.7;
+      color: $color-text-soft;
+    }
+  }
+}
+
+.step-card {
+  &__number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 3rem;
+    height: 3rem;
+    margin-bottom: $space-4;
+    padding-inline: $space-3;
+    border-radius: $radius-pill;
+    background: linear-gradient(135deg, $color-surface-soft, rgba(216, 164, 143, 0.4));
+    color: $color-primary-dark;
+    font-weight: 700;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  }
+}
+
+.quote-card {
+  p {
+    margin-bottom: $space-4;
+  }
+
+  cite {
+    font-style: normal;
+    color: $color-primary-dark;
+    font-weight: 600;
+  }
+}
+
+.site-footer {
+  margin-top: auto;
+  background: linear-gradient(180deg, rgba(111, 71, 77, 0.95), rgba(81, 52, 56, 0.98));
+  color: rgba(255, 255, 255, 0.88);
+
+  &__inner {
+    display: grid;
+    gap: $space-5;
+    padding-block: $space-6;
+
+    @include breakpoint-lg {
+      grid-template-columns: 1.3fr 1fr 1fr;
+      align-items: start;
+    }
+  }
+
+  &__brand,
+  &__info {
+    display: grid;
+    gap: $space-2;
+  }
+
+  &__eyebrow {
+    @include eyebrow;
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  strong {
+    font-size: 1.12rem;
+    color: #fff;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  &__nav {
+    display: grid;
+    gap: $space-2;
+
+    a {
+      width: fit-content;
+      color: rgba(255, 255, 255, 0.88);
+      transition: color $transition-base, transform $transition-base;
+
+      &:hover,
+      &.active {
+        color: #fff;
+        transform: translateX(2px);
+      }
+    }
+  }
+}

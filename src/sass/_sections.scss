@@ -1,0 +1,161 @@
+@use './variables' as *;
+@use './mixins' as *;
+
+.hero {
+  position: relative;
+
+  &__grid {
+    display: grid;
+    gap: $space-5;
+    align-items: center;
+    position: relative;
+
+    @include breakpoint-lg {
+      grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+    }
+  }
+
+  &__copy {
+    @include card-surface;
+    padding: $space-6;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.72));
+    animation: float-up 720ms ease both;
+
+    @media (max-width: 1023px) {
+      position: relative;
+      overflow: hidden;
+      border-radius: $radius-panel;
+      background:
+        linear-gradient(180deg, rgba(30, 26, 28, 0.2), rgba(30, 26, 28, 0.46)),
+        url('../img/hero.jpg') center / cover no-repeat;
+      color: $color-surface-strong;
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(216, 164, 143, 0.08), rgba(111, 71, 77, 0.16));
+      }
+
+      > * {
+        position: relative;
+        z-index: 1;
+      }
+    }
+
+    @include breakpoint-lg {
+      border-radius: $radius-panel;
+    }
+  }
+
+  &__eyebrow {
+    @include eyebrow;
+    margin-bottom: $space-3;
+  }
+
+  h1 {
+    margin: 0 0 $space-4;
+    font-size: clamp(2.6rem, 5vw, 4.5rem);
+    line-height: 1.08;
+  }
+
+  &__lead {
+    margin: 0 0 $space-5;
+    font-size: 1.08rem;
+    line-height: 1.8;
+    color: $color-text-soft;
+
+    @media (max-width: 1023px) {
+      color: rgba(255, 255, 255, 0.9);
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-3;
+    margin-bottom: $space-5;
+  }
+
+  &__highlights {
+    display: grid;
+    gap: $space-2;
+    margin: 0;
+    padding-left: 1.25rem;
+    color: $color-text-soft;
+
+    @media (max-width: 1023px) {
+      color: rgba(255, 255, 255, 0.88);
+    }
+  }
+
+  &__media {
+    @include card-surface(rgba(255, 255, 255, 0.55));
+    padding: $space-3;
+    box-shadow: $shadow-card-soft;
+    animation: float-up 900ms ease both;
+
+    @media (max-width: 1023px) {
+      display: none;
+    }
+
+    img {
+      border-radius: calc(#{$radius-card} - 0.5rem);
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+    }
+  }
+}
+
+.about {
+  display: grid;
+  gap: $space-5;
+  align-items: center;
+
+  @include breakpoint-lg {
+    grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr);
+  }
+
+  &__media {
+    @include card-surface(rgba(255, 255, 255, 0.6));
+    padding: $space-3;
+    box-shadow: $shadow-card-soft;
+    animation: float-up 880ms ease both;
+
+    img {
+      border-radius: calc(#{$radius-card} - 0.5rem);
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+    }
+  }
+
+  &__content {
+    @include card-surface;
+    padding: $space-6;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.72));
+    animation: float-up 760ms ease both;
+  }
+
+  &__text {
+    display: grid;
+    gap: $space-4;
+
+    p {
+      margin: 0;
+      line-height: 1.8;
+      color: $color-text-soft;
+    }
+  }
+}
+
+@keyframes float-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
