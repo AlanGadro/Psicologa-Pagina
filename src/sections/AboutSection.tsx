@@ -1,32 +1,34 @@
 import SectionHeading from '../components/SectionHeading'
+import useSiteCopy from '../hooks/useSiteCopy'
 import profilePicture from '../img/profile-picture.jpg'
 
 function AboutSection() {
+  const copy = useSiteCopy()
+
   return (
     <section className="section" id="about">
       <div className="container about">
         <div className="about__media">
-          <img src={profilePicture} alt="Retrato profesional de la Dra. Valeria Morales" />
+          <img src={profilePicture} alt={copy.about.imageAlt} />
         </div>
 
         <div className="about__content">
           <SectionHeading
-            eyebrow="Sobre mí"
-            title="Dra. Valeria Morales"
-            description="Psicóloga clínica orientada a ofrecer un espacio de escucha atenta, acompañamiento respetuoso y herramientas útiles para transitar procesos personales con mayor claridad."
+            eyebrow={copy.about.eyebrow}
+            title={copy.about.title}
+            description={copy.about.description}
           />
 
           <div className="about__text">
-            <p>
-              El objetivo de cada encuentro es que puedas sentirte escuchado con
-              seriedad, calidez y sin juicios, en un proceso adaptado a tu momento
-              y a tus necesidades.
-            </p>
-            <p>
-              El acompañamiento terapéutico se construye desde una mirada ética,
-              humana y profesional, cuidando tus tiempos y promoviendo cambios
-              sostenibles en tu bienestar emocional.
-            </p>
+            {copy.about.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+
+            <div className="about__summary">
+              {copy.about.highlights.map((highlight) => (
+                <span key={highlight}>{highlight}</span>
+              ))}
+            </div>
           </div>
         </div>
       </div>

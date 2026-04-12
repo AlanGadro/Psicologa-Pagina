@@ -1,38 +1,45 @@
-import SectionHeading from '../components/SectionHeading'
+import whatsappIcon from '../components/icons/whatsapp-svgrepo-com.svg'
+import PageShell from '../components/PageShell'
+import SectionShell from '../components/SectionShell'
+import useSiteCopy from '../hooks/useSiteCopy'
+import { getContactEmail, getWhatsAppDisplayNumber, getWhatsAppUrl } from '../lib/contact'
 
 function ContactPage() {
-  return (
-    <main className="app-shell">
-      <section className="section">
-        <div className="container contact-page">
-          <SectionHeading
-            eyebrow="Contacto"
-            title="Da el primer paso con tranquilidad"
-            description="Esta página puede concentrar el canal principal de contacto, horario de atención y una invitación clara pero respetuosa a agendar una primera conversación."
-          />
+  const copy = useSiteCopy()
+  const whatsappUrl = getWhatsAppUrl(copy.contact.whatsappButton)
+  const contactEmail = getContactEmail()
 
+  return (
+    <PageShell>
+      <SectionShell
+        sectionClassName="section"
+        containerClassName="container contact-page"
+        eyebrow={copy.contact.eyebrow}
+        title={copy.contact.title}
+        description={copy.contact.description}
+      >
           <div className="contact-card">
-            <p>
-              Si estás buscando un espacio profesional para comenzar tu proceso,
-              puedes escribir para recibir información sobre modalidad, horarios y
-              disponibilidad.
-            </p>
+            <p>{copy.contact.intro}</p>
 
             <div className="contact-card__details">
               <p>
-                <strong>Email:</strong> contacto@valeriamorales.com
+                <strong>{copy.contact.emailLabel}:</strong> {contactEmail}
               </p>
               <p>
-                <strong>WhatsApp:</strong> +54 9 11 0000 0000
+                <strong>{copy.contact.whatsappLabel}:</strong> {getWhatsAppDisplayNumber()}
               </p>
               <p>
-                <strong>Modalidad:</strong> presencial y online
+                <strong>{copy.contact.modalityLabel}:</strong> {copy.contact.modalityValue}
               </p>
             </div>
+
+            <a className="contact-card__whatsapp" href={whatsappUrl} rel="noreferrer" target="_blank">
+              <img alt="" src={whatsappIcon} />
+              <span>{copy.contact.whatsappButton}</span>
+            </a>
           </div>
-        </div>
-      </section>
-    </main>
+      </SectionShell>
+    </PageShell>
   )
 }
 

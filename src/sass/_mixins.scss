@@ -45,6 +45,33 @@
   color: $color-primary;
 }
 
+@mixin whatsapp-pill($foreground, $background, $border, $shadow, $hover-background, $hover-shadow) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: fit-content;
+  padding: 0.95rem 1.25rem;
+  border-radius: $radius-pill;
+  background: $background;
+  color: $foreground;
+  border: 1px solid $border;
+  font-weight: 600;
+  box-shadow: $shadow;
+  transition: transform $transition-base, box-shadow $transition-base, background-color $transition-base;
+
+  img {
+    width: 1.2rem;
+    height: 1.2rem;
+    object-fit: contain;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    background: $hover-background;
+    box-shadow: $hover-shadow;
+  }
+}
+
 @mixin breakpoint-md {
   @media (min-width: 768px) {
     @content;

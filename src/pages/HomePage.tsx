@@ -1,14 +1,15 @@
+import PageShell from '../components/PageShell'
 import HeroSection from '../sections/HeroSection'
 import ProcessSection from '../sections/ProcessSection'
 import TestimonialsSection from '../sections/TestimonialsSection'
 
 function HomePage() {
   return (
-    <main className="app-shell">
+    <PageShell>
       <HeroSection />
       <ProcessSection />
       <TestimonialsSection />
-    </main>
+    </PageShell>
   )
 }
 

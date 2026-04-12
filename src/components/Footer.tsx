@@ -1,30 +1,53 @@
 import { NavLink } from 'react-router-dom'
+import whatsappIcon from './icons/whatsapp-svgrepo-com.svg'
+import useSiteCopy from '../hooks/useSiteCopy'
+import { getContactEmail, getWhatsAppUrl } from '../lib/contact'
+import { primaryNavigation } from '../lib/routes'
 
 function Footer() {
+  const copy = useSiteCopy()
+  const whatsappUrl = getWhatsAppUrl(copy.footer.whatsappCta)
+  const contactEmail = getContactEmail()
+
   return (
     <footer className="site-footer">
       <div className="container site-footer__inner">
-        <div className="site-footer__brand">
-          <span className="site-footer__eyebrow">Psicología clínica</span>
-          <strong>Dra. Valeria Morales</strong>
-          <p>
-            Un espacio profesional y humano para acompañarte con claridad,
-            respeto y cercanía.
-          </p>
+        <div className="site-footer__grid">
+          <div className="site-footer__brand">
+            <span className="site-footer__eyebrow">{copy.brand.eyebrow}</span>
+            <strong>{copy.brand.name}</strong>
+            <p>{copy.footer.tagline}</p>
+            <p className="site-footer__mode">{copy.footer.mode}</p>
+          </div>
+
+          <nav className="site-footer__nav" aria-label={copy.footer.navigationLabel}>
+            <span className="site-footer__label">{copy.footer.navigationTitle}</span>
+            {primaryNavigation.map((link) => (
+              <NavLink key={link.to} to={link.to}>
+                {copy.navigation.links[link.key]}
+              </NavLink>
+            ))}
+          </nav>
+
+          <div className="site-footer__contact-card">
+            <span className="site-footer__label">{copy.footer.contactTitle}</span>
+            <a
+              className="site-footer__whatsapp"
+              href={whatsappUrl}
+              rel="noreferrer"
+              target="_blank"
+            >
+              <img alt="" src={whatsappIcon} />
+              <span>{copy.footer.whatsappCta}</span>
+            </a>
+            <a className="site-footer__email" href={`mailto:${contactEmail}`}>
+              {contactEmail}
+            </a>
+          </div>
         </div>
 
-        <nav className="site-footer__nav" aria-label="Footer">
-          <NavLink to="/">Inicio</NavLink>
-          <NavLink to="/sobre-mi">Sobre mí</NavLink>
-          <NavLink to="/servicios">Servicios</NavLink>
-          <NavLink to="/formacion">Formación</NavLink>
-          <NavLink to="/contacto">Contacto</NavLink>
-        </nav>
-
-        <div className="site-footer__info">
-          <p>Atención presencial y online</p>
-          <p>contacto@valeriamorales.com</p>
-          <p>© 2026 Dra. Valeria Morales</p>
+        <div className="site-footer__bottom">
+          <p>{copy.footer.copyright}</p>
         </div>
       </div>
     </footer>

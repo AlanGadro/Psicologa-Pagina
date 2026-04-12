@@ -1,10 +1,11 @@
+import PageShell from '../components/PageShell'
 import StudiesSection from '../sections/StudiesSection'
 
 function StudiesPage() {
   return (
-    <main className="app-shell">
+    <PageShell>
       <StudiesSection />
-    </main>
+    </PageShell>
   )
 }
 

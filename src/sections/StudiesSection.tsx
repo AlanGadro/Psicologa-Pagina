@@ -1,40 +1,25 @@
-import SectionHeading from '../components/SectionHeading'
-
-const studies = [
-  {
-    title: 'Licenciatura en Psicología',
-    description: 'Formación universitaria de base orientada al trabajo clínico y al acompañamiento en salud mental.',
-  },
-  {
-    title: 'Especialización en psicoterapia',
-    description: 'Capacitación complementaria en herramientas clínicas y enfoques terapéuticos aplicados a la práctica profesional.',
-  },
-  {
-    title: 'Actualización permanente',
-    description: 'Participación en formación continua vinculada a ansiedad, vínculos, regulación emocional y procesos de cambio.',
-  },
-]
+import LabeledItemGrid from '../components/LabeledItemGrid'
+import SectionShell from '../components/SectionShell'
+import useSiteCopy from '../hooks/useSiteCopy'
 
 function StudiesSection() {
-  return (
-    <section className="section section--accent" id="studies">
-      <div className="container">
-        <SectionHeading
-          eyebrow="Formación"
-          title="Estudios y preparación profesional"
-          description="Esta página ayuda a reforzar la confianza mostrando formación, trayectoria y actualización profesional de manera clara y sobria."
-        />
+  const copy = useSiteCopy()
 
-        <div className="study-list">
-          {studies.map((study) => (
-            <article className="study-item" key={study.title}>
-              <strong>{study.title}</strong>
-              <p>{study.description}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
+  return (
+    <SectionShell
+      id="studies"
+      sectionClassName="section section--accent"
+      eyebrow={copy.studies.eyebrow}
+      title={copy.studies.title}
+      description={copy.studies.description}
+    >
+      <LabeledItemGrid
+        items={copy.studies.items}
+        listClassName="study-list"
+        itemClassName="study-item"
+        headingTag="strong"
+      />
+    </SectionShell>
   )
 }
 

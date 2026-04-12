@@ -1,10 +1,11 @@
+import PageShell from '../components/PageShell'
 import AboutSection from '../sections/AboutSection'
 
 function AboutPage() {
   return (
-    <main className="app-shell">
+    <PageShell>
       <AboutSection />
-    </main>
+    </PageShell>
   )
 }
 
