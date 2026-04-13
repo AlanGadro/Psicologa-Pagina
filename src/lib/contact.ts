@@ -1,6 +1,8 @@
 const whatsappPhone = '5491100000000'
 const contactEmail = 'contacto@valeriamorales.com'
 
+// Contact endpoints are centralized so the two call-to-action surfaces stay in
+// sync and use the same encoded WhatsApp target.
 export function getWhatsAppUrl(message?: string) {
   const baseUrl = `https://wa.me/${whatsappPhone}`
 

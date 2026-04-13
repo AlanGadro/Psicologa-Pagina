@@ -6,6 +6,8 @@ import { primaryNavigation } from '../lib/routes'
 
 function Footer() {
   const copy = useSiteCopy()
+  // These contact targets live in one place so the footer and contact page
+  // cannot drift if the WhatsApp number or email changes.
   const whatsappUrl = getWhatsAppUrl(copy.footer.whatsappCta)
   const contactEmail = getContactEmail()
 

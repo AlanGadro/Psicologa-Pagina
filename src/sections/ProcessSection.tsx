@@ -4,6 +4,8 @@ import useSiteCopy from '../hooks/useSiteCopy'
 function ProcessSection() {
   const copy = useSiteCopy()
 
+  // The numbered sequence is intentionally simple because it is meant to set
+  // expectations, not describe a rigid treatment protocol.
   return (
     <SectionShell
       id="process"

@@ -16,6 +16,8 @@
 }
 
 .section {
+  // Section spacing and divider styling are shared so each content block reads
+  // as part of the same editorial system even when the background variant changes.
   @include section-spacing;
   position: relative;
 

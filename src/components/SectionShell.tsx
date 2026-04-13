@@ -22,6 +22,8 @@ function SectionShell({
   centered,
   children,
 }: SectionShellProps) {
+  // Shared wrapper for content sections so spacing, headings, and container
+  // width stay consistent across pages without repeating markup.
   return (
     <section className={sectionClassName} id={id}>
       <div className={containerClassName}>

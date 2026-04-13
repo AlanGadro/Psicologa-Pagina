@@ -8,6 +8,8 @@ import { primaryNavigation } from '../lib/routes'
 function isExactLink(
   link: (typeof primaryNavigation)[number],
 ): link is Extract<(typeof primaryNavigation)[number], { end: true }> {
+  // Only the home route needs exact matching; nested pages should not keep the
+  // root link active just because their pathname starts with '/'.
   return 'end' in link && link.end === true
 }
 
@@ -27,6 +29,8 @@ function Header() {
       return
     }
 
+    // Reset the header state when navigating between pages so the menu and
+    // scroll-aware visibility logic do not leak from the previous route.
     lastScrollY.current = window.scrollY
     setIsVisible(true)
     setIsMenuOpen(false)
@@ -50,6 +54,8 @@ function Header() {
     }
 
     const getThreshold = () => {
+      // The homepage header stays visible through the hero; other pages use a
+      // shorter threshold because they do not need the same introductory room.
       if (location.pathname !== '/') {
         return 140
       }
@@ -67,6 +73,8 @@ function Header() {
       const currentScrollY = window.scrollY
       const threshold = getThreshold()
 
+      // When the mobile menu is open, the header must remain visible even if
+      // the scroll position would normally hide it.
       if (isMenuOpen) {
         setIsVisible(true)
         lastScrollY.current = currentScrollY

@@ -1,5 +1,7 @@
 @use './variables' as *;
 
+// These mixins keep the layout primitives small and reusable so sections can
+// share spacing, card surfaces, and breakpoints without repeating raw values.
 @mixin container {
   width: min(100% - 2rem, $container-width);
   margin-inline: auto;

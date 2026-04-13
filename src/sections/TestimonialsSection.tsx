@@ -4,6 +4,8 @@ import useSiteCopy from '../hooks/useSiteCopy'
 function TestimonialsSection() {
   const copy = useSiteCopy()
 
+  // Short quotes work best here: they add trust without sounding promotional
+  // or competing with the main service and contact calls to action.
   return (
     <SectionShell
       id="testimonials"

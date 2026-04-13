@@ -6,6 +6,8 @@ function AboutSection() {
   const copy = useSiteCopy()
 
   return (
+    // Portrait plus short bio keeps the about page human without turning it into
+    // a long-form profile that would bury the key trust signals.
     <section className="section" id="about">
       <div className="container about">
         <div className="about__media">

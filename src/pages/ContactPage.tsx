@@ -9,6 +9,8 @@ function ContactPage() {
   const whatsappUrl = getWhatsAppUrl(copy.contact.whatsappButton)
   const contactEmail = getContactEmail()
 
+  // Keep the contact page scannable: the section shell handles headings, and
+  // the card concentrates only the actionable contact details.
   return (
     <PageShell>
       <SectionShell

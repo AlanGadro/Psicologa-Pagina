@@ -13,10 +13,14 @@ function App() {
   const language = useBrowserLanguage()
 
   useEffect(() => {
+    // Keep the document language in sync so browser features and assistive tech
+    // read the active locale correctly after the client bootstraps.
     document.documentElement.lang = language
     document.documentElement.dataset.language = language
   }, [language])
 
+  // Locale is resolved before routing so every page, shared layout, and copy
+  // lookup reads from the same language value on the first client render.
   return (
     <LanguageProvider language={language}>
       <BrowserRouter>

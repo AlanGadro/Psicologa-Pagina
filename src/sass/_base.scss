@@ -43,6 +43,8 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  // The site uses layered hover and entrance transitions, so this global reset
+  // keeps motion respectful for users who opt out of animation.
   *,
   *::before,
   *::after {

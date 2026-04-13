@@ -5,6 +5,8 @@ import { routes } from '../lib/routes'
 function HeroSection() {
   const copy = useSiteCopy()
 
+  // The hero anchors the landing page with the main promise, supporting proof
+  // points, and two clear next steps into the rest of the site.
   return (
     <section className="hero section section--hero" id="home">
       <div className="container hero__grid">

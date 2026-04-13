@@ -5,6 +5,8 @@ type SectionHeadingProps = {
   centered?: boolean
 }
 
+// A small heading primitive keeps section chrome consistent while still letting
+// the caller decide whether the heading should be centered or left-aligned.
 function SectionHeading({
   eyebrow,
   title,

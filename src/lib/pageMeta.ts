@@ -19,5 +19,7 @@ const pageTitles: Record<SupportedLanguage, Record<string, string>> = {
 }
 
 export function getPageTitle(pathname: string, language: SupportedLanguage) {
+  // Unknown routes reuse the home title so title resolution never produces an
+  // empty string during client-side navigation or 404-like states.
   return pageTitles[language][pathname] ?? pageTitles[language][routes.home]
 }

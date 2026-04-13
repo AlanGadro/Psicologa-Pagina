@@ -1,10 +1,19 @@
 import type { SupportedLanguage } from './language'
 
+// All public-facing copy is centralized here so the UI can switch languages
+// without scattering translated strings across components.
+//
+// The structure is intentionally repetitive across locales: each language must
+// expose the same keys so components can stay dumb and only select by language.
+// When adding a new section, update both locales together and keep the shape in
+// sync rather than introducing language-specific branches in the UI.
 export type LabeledItem = {
   title: string
   description: string
 }
 
+// Small repeated content blocks used by timeline-style and quote-style UI.
+// Keeping them local to this file avoids exporting one-off types all over the app.
 type StepItem = {
   number: string
   title: string
@@ -16,7 +25,13 @@ type QuoteItem = {
   author: string
 }
 
+// This is the canonical content contract for the site. It mirrors the page
+// structure and gives every consumer a single source of truth for copy shape.
+//
+// Keep the hierarchy stable: brand/navigation/footer are shared chrome, while
+// the page sections underneath match the actual routes rendered by the app.
 type SiteCopy = {
+  // Shared identity and navigation labels used in the header/footer chrome.
   brand: {
     eyebrow: string
     name: string
@@ -28,6 +43,8 @@ type SiteCopy = {
     menuCloseLabel: string
     links: Record<'home' | 'about' | 'services' | 'studies' | 'contact', string>
   }
+  // Footer content intentionally reuses some navigation and contact strings so
+  // the same wording appears consistently across the layout.
   footer: {
     navigationTitle: string
     navigationLabel: string
@@ -37,6 +54,8 @@ type SiteCopy = {
     whatsappCta: string
     copyright: string
   }
+  // Homepage copy is split into small content blocks so the landing page can be
+  // assembled from simple presentational components without hard-coded text.
   home: {
     hero: {
       eyebrow: string
@@ -60,6 +79,8 @@ type SiteCopy = {
       items: QuoteItem[]
     }
   }
+  // About/service/studies/contact pages each have their own content bundle so
+  // route components can stay focused on layout rather than text ownership.
   about: {
     eyebrow: string
     title: string
@@ -68,18 +89,23 @@ type SiteCopy = {
     highlights: string[]
     imageAlt: string
   }
+  // Services and studies use the same item shape on purpose: a title plus a
+  // short description is enough for the card grid layout on both pages.
   services: {
     eyebrow: string
     title: string
     description: string
     items: LabeledItem[]
   }
+  // Studies mirrors services so both pages can use the same rendering logic.
   studies: {
     eyebrow: string
     title: string
     description: string
     items: LabeledItem[]
   }
+  // Contact strings are grouped here because the footer and dedicated contact
+  // page both depend on them, and they must stay consistent.
   contact: {
     eyebrow: string
     title: string
@@ -93,7 +119,12 @@ type SiteCopy = {
   }
 }
 
+// The Spanish and English entries must remain structurally identical. When a
+// key changes in one locale, it should change in the other unless there is a
+// deliberate content gap that components can safely ignore.
 export const siteCopy: Record<SupportedLanguage, SiteCopy> = {
+  // Spanish is the primary editorial source; English mirrors it closely so the
+  // site reads like a true translation instead of a partial second draft.
   es: {
     brand: {
       eyebrow: 'Psicología clínica',
@@ -123,6 +154,8 @@ export const siteCopy: Record<SupportedLanguage, SiteCopy> = {
       copyright: '© 2026 Dra. Valeria Morales',
     },
     home: {
+      // Home content favors reassurance and orientation: the hero explains the
+      // offer, the process reduces uncertainty, and testimonials add trust.
       hero: {
         eyebrow: 'Psicología clínica',
         title: 'Un espacio profesional para tu bienestar emocional',
@@ -142,6 +175,8 @@ export const siteCopy: Record<SupportedLanguage, SiteCopy> = {
         title: 'Cómo es el acompañamiento',
         description:
           'Mostrar el proceso desde la home ayuda a bajar la incertidumbre y a que pedir ayuda se sienta más claro y accesible.',
+        // The step sequence is linear because the UI presents it as a simple
+        // first-contact-to-follow-up journey.
         steps: [
           {
             number: '01',
@@ -168,6 +203,8 @@ export const siteCopy: Record<SupportedLanguage, SiteCopy> = {
         title: 'Experiencias que transmiten confianza',
         description:
           'En la página de inicio, los testimonios funcionan como un refuerzo breve de confianza sin recargar el recorrido del usuario.',
+        // Testimonials are intentionally short and neutral so they support the
+        // professional tone instead of reading like marketing copy.
         items: [
           {
             quote:
@@ -183,6 +220,8 @@ export const siteCopy: Record<SupportedLanguage, SiteCopy> = {
       },
     },
     about: {
+      // The about page repeats the same professional framing in both locales so
+      // the user's trust-building journey stays consistent regardless of language.
       eyebrow: 'Sobre mí',
       title: 'Dra. Valeria Morales',
       description:
@@ -195,6 +234,8 @@ export const siteCopy: Record<SupportedLanguage, SiteCopy> = {
       imageAlt: 'Retrato profesional de la Dra. Valeria Morales',
     },
     services: {
+      // Service cards use the same short format in both languages to keep the
+      // grid balanced and make it easy to add or reorder offerings later.
       eyebrow: 'Servicios',
       title: 'Áreas de acompañamiento',
       description:
@@ -218,6 +259,8 @@ export const siteCopy: Record<SupportedLanguage, SiteCopy> = {
       ],
     },
     studies: {
+      // This section is intentionally more formal than the services copy; it is
+      // meant to reinforce credibility without sounding inflated.
       eyebrow: 'Formación',
       title: 'Estudios y preparación profesional',
       description:
@@ -241,6 +284,8 @@ export const siteCopy: Record<SupportedLanguage, SiteCopy> = {
       ],
     },
     contact: {
+      // Contact copy is written to feel calm and practical: it should invite
+      // action without sounding pushy or overly sales-oriented.
       eyebrow: 'Contacto',
       title: 'Da el primer paso con tranquilidad',
       description:
@@ -254,6 +299,8 @@ export const siteCopy: Record<SupportedLanguage, SiteCopy> = {
       whatsappButton: 'Iniciar conversación por WhatsApp',
     },
   },
+  // English is a parallel content set, not a free-form rewrite; the same page
+  // blocks exist so components can switch locales without special cases.
   en: {
     brand: {
       eyebrow: 'Clinical psychology',
@@ -283,6 +330,8 @@ export const siteCopy: Record<SupportedLanguage, SiteCopy> = {
       copyright: '© 2026 Dr. Valeria Morales',
     },
     home: {
+      // These sections map 1:1 with the Spanish content to preserve the same
+      // page rhythm and component composition in both languages.
       hero: {
         eyebrow: 'Clinical psychology',
         title: 'Professional care for your emotional well-being',
@@ -302,6 +351,8 @@ export const siteCopy: Record<SupportedLanguage, SiteCopy> = {
         title: 'What support looks like',
         description:
           'Showing the process on the home page helps reduce uncertainty and makes reaching out feel clearer and more approachable.',
+        // The sequence and wording stay aligned with Spanish so the timeline UI
+        // does not need locale-specific logic.
         steps: [
           {
             number: '01',
@@ -328,6 +379,8 @@ export const siteCopy: Record<SupportedLanguage, SiteCopy> = {
         title: 'Experiences that inspire trust',
         description:
           'On the homepage, testimonials work best as a short and honest trust signal without overloading the user journey.',
+        // The testimonials mirror the Spanish set in intent even though the
+        // wording is adapted naturally for English readers.
         items: [
           {
             quote:
@@ -343,6 +396,8 @@ export const siteCopy: Record<SupportedLanguage, SiteCopy> = {
       },
     },
     about: {
+      // The about page keeps the same informational scope across locales so the
+      // clinician profile feels equally complete in either language.
       eyebrow: 'About',
       title: 'Dr. Valeria Morales',
       description:
@@ -355,6 +410,8 @@ export const siteCopy: Record<SupportedLanguage, SiteCopy> = {
       imageAlt: 'Professional portrait of Dr. Valeria Morales',
     },
     services: {
+      // Service labels stay short to preserve card balance and prevent the grid
+      // from becoming visually uneven in translated content.
       eyebrow: 'Services',
       title: 'Areas of support',
       description:
@@ -378,6 +435,8 @@ export const siteCopy: Record<SupportedLanguage, SiteCopy> = {
       ],
     },
     studies: {
+      // Keeping this page structurally parallel to services makes the shared
+      // card component reusable for future content updates.
       eyebrow: 'Training',
       title: 'Education and professional preparation',
       description:
@@ -401,6 +460,8 @@ export const siteCopy: Record<SupportedLanguage, SiteCopy> = {
       ],
     },
     contact: {
+      // The contact page must remain easy to skim because it is the main action
+      // endpoint for the site, regardless of language.
       eyebrow: 'Contact',
       title: 'Take the first step with calm',
       description:

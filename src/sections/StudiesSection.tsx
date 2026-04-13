@@ -5,6 +5,8 @@ import useSiteCopy from '../hooks/useSiteCopy'
 function StudiesSection() {
   const copy = useSiteCopy()
 
+  // The strong heading variant keeps the education list feeling more formal
+  // while still sharing the same card layout as the services page.
   return (
     <SectionShell
       id="studies"

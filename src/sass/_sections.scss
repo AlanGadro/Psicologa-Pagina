@@ -2,6 +2,8 @@
 @use './mixins' as *;
 
 .hero {
+  // The hero intentionally layers text over the background image, so the overlay
+  // is tuned to preserve legibility across desktop and mobile crops.
   position: relative;
   background:
     linear-gradient(90deg, rgba(24, 20, 22, 0.42) 0%, rgba(24, 20, 22, 0.18) 30%, rgba(24, 20, 22, 0.06) 58%, rgba(24, 20, 22, 0.01) 100%),

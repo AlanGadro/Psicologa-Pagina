@@ -1,4 +1,4 @@
-import type { LabeledItem } from '../lib/siteCopy'
+import type { LabeledItem } from '../lib/siteCopy.ts'
 
 type LabeledItemGridProps = {
   items: LabeledItem[]
@@ -16,6 +16,8 @@ function LabeledItemGrid({
   return (
     <div className={listClassName}>
       {items.map((item) => {
+        // Some sections need a stronger semantic heading than others, so the
+        // tag stays configurable without duplicating the card layout.
         const HeadingTag = headingTag
 
         return (

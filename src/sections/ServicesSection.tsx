@@ -5,6 +5,8 @@ import useSiteCopy from '../hooks/useSiteCopy'
 function ServicesSection() {
   const copy = useSiteCopy()
 
+  // Services reuses the generic item grid so the page can stay focused on the
+  // clinical offering rather than introducing one-off card markup.
   return (
     <SectionShell
       id="services"

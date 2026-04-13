@@ -4,6 +4,8 @@ import ProcessSection from '../sections/ProcessSection'
 import TestimonialsSection from '../sections/TestimonialsSection'
 
 function HomePage() {
+  // The homepage stays as a thin composition layer so the section modules own
+  // their own content, layout, and reuse without extra page-specific glue.
   return (
     <PageShell>
       <HeroSection />

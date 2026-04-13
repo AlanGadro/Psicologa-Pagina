@@ -2,6 +2,8 @@
 @use './mixins' as *;
 
 .site-header {
+  // The header doubles as navigation chrome and a scroll-aware surface, so the
+  // desktop and mobile states need to stay visually linked.
   position: sticky;
   top: 0;
   z-index: 10;
@@ -414,6 +416,8 @@
 }
 
 .site-footer {
+  // The footer mirrors the header's brand and contact areas, but with a denser
+  // layout so the page closes with a clear next step.
   margin-top: auto;
   background: linear-gradient(180deg, rgba(111, 71, 77, 0.95), rgba(81, 52, 56, 0.98));
   color: rgba(255, 255, 255, 0.88);
